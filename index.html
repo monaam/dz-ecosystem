@@ -47,6 +47,19 @@
     <link rel="canonical" href="https://ecosystem.zegai.org/" />
   </head>
   <body>
+    <script>
+      (function() {
+        const theme = localStorage.getItem('algeria-ecosystem-theme') || 'light';
+        const root = document.documentElement;
+        
+        if (theme === 'system') {
+          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          root.classList.add(systemTheme);
+        } else {
+          root.classList.add(theme);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

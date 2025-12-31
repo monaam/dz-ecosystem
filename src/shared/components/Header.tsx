@@ -1,6 +1,7 @@
 import { Rocket, Building2, Zap, Users, Radio, Briefcase, MessageCircle, Calendar, BookOpen, Info, Plus } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 interface HeaderProps {
   title?: string;
@@ -29,10 +30,13 @@ const Header = ({
   return (
     <header className="text-center py-8 sm:py-12 md:py-16 px-4">
       <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary text-primary-foreground">
+        <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary text-primary-foreground flex-shrink-0">
           <Rocket className="w-6 h-6 sm:w-7 sm:h-7" />
         </div>
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">Algeria Ecosystem</h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground leading-tight">Algeria Ecosystem</h2>
+        <div className="flex items-center flex-shrink-0 mt-1">
+          <ThemeToggle />
+        </div>
       </div>
       
       {/* Navigation */}
