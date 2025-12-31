@@ -22,7 +22,9 @@ const Index = () => {
 
   // Extract only used categories from startups
   const usedCategories = useMemo(() => {
-    const usedCategoryIds = new Set(startups.map((startup) => startup.categoryId));
+    const usedCategoryIds = new Set(
+      startups.flatMap((startup) => startup.categoryIds)
+    );
     return categories.filter((category) => usedCategoryIds.has(category.id));
   }, []);
 
@@ -39,7 +41,7 @@ const Index = () => {
 
     // Filter by category
     if (selectedCategory !== 'all') {
-      result = result.filter((startup) => startup.categoryId === selectedCategory);
+      result = result.filter((startup) => startup.categoryIds.includes(selectedCategory));
     }
 
     // Sort by founded year

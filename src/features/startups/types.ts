@@ -6,7 +6,7 @@ export interface Category {
 export interface Startup {
   name: string;
   foundedYear: number;
-  categoryId: string;
+  categoryIds: string[];
   website: string;
   linkedin?: string;
 }

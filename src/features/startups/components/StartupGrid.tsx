@@ -9,8 +9,6 @@ interface StartupGridProps {
 }
 
 const StartupGrid = ({ startups, categories, onClearFilters }: StartupGridProps) => {
-  const getCategoryById = (id: string) => categories.find((c) => c.id === id);
-
   if (startups.length === 0) {
     return <EmptyState onClearFilters={onClearFilters} message="No startups found" />;
   }
@@ -25,7 +23,7 @@ const StartupGrid = ({ startups, categories, onClearFilters }: StartupGridProps)
         >
           <StartupCard
             startup={startup}
-            category={getCategoryById(startup.categoryId)}
+            categories={categories}
           />
         </div>
       ))}

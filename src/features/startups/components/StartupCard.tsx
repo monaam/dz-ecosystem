@@ -4,13 +4,17 @@ import type { Startup, Category } from '../types';
 
 interface StartupCardProps {
   startup: Startup;
-  category: Category | undefined;
+  categories: Category[];
 }
 
-const StartupCard = ({ startup, category }: StartupCardProps) => {
+const StartupCard = ({ startup, categories }: StartupCardProps) => {
   const [imageError, setImageError] = useState(false);
   const domain = startup.website.replace(/^https?:\/\//, '').replace(/\/$/, '');
   const faviconUrl = `https://fetchfavicon.com/i/${domain}?size=64`;
+  
+  const startupCategories = categories.filter((cat) => 
+    startup.categoryIds.includes(cat.id)
+  );
   
   return (
     <article className="group relative bg-card rounded-2xl border border-border/60 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
@@ -32,8 +36,17 @@ const StartupCard = ({ startup, category }: StartupCardProps) => {
           <h3 className="font-bold text-lg text-card-foreground truncate mb-1 group-hover:text-primary transition-colors duration-300">
             {startup.name}
           </h3>
-          {category && (
-            <p className="text-sm font-medium text-primary/80">{category.name}</p>
+          {startupCategories.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-1">
+              {startupCategories.map((category) => (
+                <span
+                  key={category.id}
+                  className="text-xs font-medium text-primary/80 bg-primary/10 px-2 py-0.5 rounded-md"
+                >
+                  {category.name}
+                </span>
+              ))}
+            </div>
           )}
         </div>
 
